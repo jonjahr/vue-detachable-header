@@ -2,7 +2,7 @@
 
 <template lang='pug'>
 
-.detachable-header(:style='styles' :class='classes'): slot
+.detachable-header(:style='styles' :class='classes'): slot(v-bind='{revealed, isDetached, atScrollTop}')
 
 </template>
 

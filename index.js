@@ -96,8 +96,8 @@ module.exports =
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_stylus_loader_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_style_index_0_id_3a8a1530_prod_lang_stylus_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_stylus_loader_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_style_index_0_id_3a8a1530_prod_lang_stylus_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_stylus_loader_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_style_index_0_id_3a8a1530_prod_lang_stylus_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_stylus_loader_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_style_index_0_id_599cb6f9_prod_lang_stylus_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_stylus_loader_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_style_index_0_id_599cb6f9_prod_lang_stylus_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_stylus_loader_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_style_index_0_id_599cb6f9_prod_lang_stylus_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
 /* unused harmony reexport * */
 
 
@@ -109,14 +109,20 @@ module.exports =
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--5!./node_modules/pug-plain-loader!./node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=template&id=3a8a1530&scoped=true&lang=pug&
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--5!./node_modules/pug-plain-loader!./node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=template&id=599cb6f9&scoped=true&lang=pug&
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c
   return _c(
     "div",
     { staticClass: "detachable-header", class: _vm.classes, style: _vm.styles },
-    [_vm._t("default")],
+    [
+      _vm._t("default", null, null, {
+        revealed: _vm.revealed,
+        isDetached: _vm.isDetached,
+        atScrollTop: _vm.atScrollTop,
+      }),
+    ],
     2
   )
 }
@@ -124,7 +130,7 @@ var staticRenderFns = []
 render._withStripped = true
 
 
-// CONCATENATED MODULE: ./index.vue?vue&type=template&id=3a8a1530&scoped=true&lang=pug&
+// CONCATENATED MODULE: ./index.vue?vue&type=template&id=599cb6f9&scoped=true&lang=pug&
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/coffee-loader!./node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=script&lang=coffee&
 /* harmony default export */ var lib_vue_loader_options_indexvue_type_script_lang_coffee_ = ({
@@ -210,23 +216,18 @@ render._withStripped = true
         case !(this.scrollingUp && this.isDetached):
           return 0;
         // When forced to reveal itself
-
         case !this.forceReveal:
           return 0;
         // Since we're fading to reveal, don't offset the transform
-
         case !(this.scrolledPast && this.revealTransition === 'fade'):
           return 0;
         // When scrolling down from top, shift off screen equally until scrolled
         // past
-
         case !!this.scrolledPast:
           return -1 * this.scrollY;
         // When detached and revealed, show
-
         case !(this.isDetached && this.revealed):
           return 0;
-
         default:
           // Else, hide
           return -1 * this.offscreenHeight;
@@ -239,20 +240,16 @@ render._withStripped = true
     // Fade in the header when we would show it after scrolling past it's height
     revealed: function () {
       var scrollDistanceSinceReveal;
-
       if (this.scrollingUp) {
         // When scrolling up always show
         return true;
-      } // When scrolling down and detached, wait closeOnScrollThreshold before
+      }
+      // When scrolling down and detached, wait closeOnScrollThreshold before
       // hiding
-
-
       scrollDistanceSinceReveal = Math.abs(this.scrollY - this.scrollYOnScrollDownStart);
-
       if (!this.scrollingUp && this.isDetached && scrollDistanceSinceReveal < this.closeOnScrollThreshold) {
         return true;
       }
-
       return !this.scrolledPast;
     },
     // At the top of of the page.
@@ -271,12 +268,10 @@ render._withStripped = true
           return true;
         // We've scroll past so add class no so it doesn't tween on the first
         // detaching moment
-
         case !this.scrolledPast:
           return true;
         // We're scrolling up after having scroll past the header and we're not
         // actually at the very top of the page.
-
         case !(this.isDetached && !this.atScrollTop):
           return true;
       }
@@ -287,11 +282,10 @@ render._withStripped = true
       if (!this.noOffsetWhenDetached) {
         // Even when scrolling, bar should be offset
         return this.offset;
-      } // The bar starts off offset but shifts up on scroll. Thus, when in a
+      }
+      // The bar starts off offset but shifts up on scroll. Thus, when in a
       // detached state, header should pin to top. Otherwise, like when at top
       // of the page, the offset pushes the header down.
-
-
       if (this.isDetached) {
         return 0;
       } else {
@@ -327,7 +321,6 @@ render._withStripped = true
         // header height
         this.isDetached = true;
       }
-
       if (this.isDetached && !this.scrollingUp) {
         // When header is detached and we start scrolling down, save scrollY value
         return this.scrollYOnScrollDownStart = this.scrollY;
@@ -345,9 +338,8 @@ render._withStripped = true
       if (this.atScrollTop) {
         // When the user returns to the top, reset the tweening
         this.isDetached = false;
-      } // Emit event so the parent can use atScrollTop for styles or logic
-
-
+      }
+      // Emit event so the parent can use atScrollTop for styles or logic
       return this.$emit('atScrollTop', this.atScrollTop);
     },
     // Disable the transition on top when switching between isDetached states.
@@ -370,8 +362,8 @@ render._withStripped = true
 });
 // CONCATENATED MODULE: ./index.vue?vue&type=script&lang=coffee&
  /* harmony default export */ var indexvue_type_script_lang_coffee_ = (lib_vue_loader_options_indexvue_type_script_lang_coffee_); 
-// EXTERNAL MODULE: ./index.vue?vue&type=style&index=0&id=3a8a1530&prod&lang=stylus&scoped=true&
-var indexvue_type_style_index_0_id_3a8a1530_prod_lang_stylus_scoped_true_ = __webpack_require__(1);
+// EXTERNAL MODULE: ./index.vue?vue&type=style&index=0&id=599cb6f9&prod&lang=stylus&scoped=true&
+var indexvue_type_style_index_0_id_599cb6f9_prod_lang_stylus_scoped_true_ = __webpack_require__(1);
 
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
 /* globals __VUE_SSR_CONTEXT__ */
@@ -486,7 +478,7 @@ var component = normalizeComponent(
   staticRenderFns,
   false,
   null,
-  "3a8a1530",
+  "599cb6f9",
   null
   
 )
