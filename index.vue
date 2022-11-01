@@ -9,6 +9,8 @@
 <!-- ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– -->
 
 <script lang='coffee'>
+import throttle from 'lodash.throttle'
+
 export default
 
 	props:
@@ -50,6 +52,9 @@ export default
 			type: Number
 			default: 0
 
+		throttle:
+			type: Number
+			default: 0
 
 		offscreenHeight:
 			type: Number
@@ -61,6 +66,13 @@ export default
 		isDetached: false
 		disableTopTween: false
 		scrollYOnScrollDownStart: 0
+
+	created: ->
+		# Figure out scroll direction
+		setScrollingUp = (now, old) => @scrollingUp = now != 0 and now < old
+		# Set up a throttled watcher, or a regular watcher, depending on throttle prop
+		if @throttle then @$watch 'scrollY', throttle(setScrollingUp, @throttle)
+		else @$watch 'scrollY', setScrollingUp
 
 	# Add scroll listners
 	mounted: ->
@@ -164,9 +176,6 @@ export default
 		]
 
 	watch:
-
-		# Figure out scroll direction
-		scrollY: (now, old) -> @scrollingUp = now != 0 and now < old
 
 		scrollingUp: ->
 

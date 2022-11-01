@@ -9,7 +9,9 @@
 		"version": "npm run build && git add -A",
 		"postversion": "git push --follow-tags"
 	},
-	"dependencies": {},
+	"dependencies": {
+		"lodash.throttle": "^4.1.1"
+	},
 	"devDependencies": {
 		"@babel/core": "^7.4.3",
 		"@babel/preset-env": "^7.4.3",

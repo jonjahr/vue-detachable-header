@@ -82,7 +82,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -93,23 +93,29 @@ module.exports =
 
 /***/ }),
 /* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_stylus_loader_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_style_index_0_id_599cb6f9_prod_lang_stylus_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_stylus_loader_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_style_index_0_id_599cb6f9_prod_lang_stylus_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_stylus_loader_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_style_index_0_id_599cb6f9_prod_lang_stylus_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
-
+module.exports = require("lodash.throttle");
 
 /***/ }),
 /* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_stylus_loader_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_style_index_0_id_3796df4e_prod_lang_stylus_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_stylus_loader_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_style_index_0_id_3796df4e_prod_lang_stylus_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_node_modules_css_loader_dist_cjs_js_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_stylus_loader_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_index_vue_vue_type_style_index_0_id_3796df4e_prod_lang_stylus_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--5!./node_modules/pug-plain-loader!./node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=template&id=599cb6f9&scoped=true&lang=pug&
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??ref--5!./node_modules/pug-plain-loader!./node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=template&id=3796df4e&scoped=true&lang=pug&
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c
@@ -130,9 +136,14 @@ var staticRenderFns = []
 render._withStripped = true
 
 
-// CONCATENATED MODULE: ./index.vue?vue&type=template&id=599cb6f9&scoped=true&lang=pug&
+// CONCATENATED MODULE: ./index.vue?vue&type=template&id=3796df4e&scoped=true&lang=pug&
+
+// EXTERNAL MODULE: external "lodash.throttle"
+var external_lodash_throttle_ = __webpack_require__(1);
+var external_lodash_throttle_default = /*#__PURE__*/__webpack_require__.n(external_lodash_throttle_);
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib!./node_modules/coffee-loader!./node_modules/vue-loader/lib??vue-loader-options!./index.vue?vue&type=script&lang=coffee&
+
 /* harmony default export */ var lib_vue_loader_options_indexvue_type_script_lang_coffee_ = ({
   props: {
     // The height of the header
@@ -169,6 +180,10 @@ render._withStripped = true
       type: Number,
       default: 0
     },
+    throttle: {
+      type: Number,
+      default: 0
+    },
     offscreenHeight: {
       type: Number,
       default: function () {
@@ -184,6 +199,19 @@ render._withStripped = true
       disableTopTween: false,
       scrollYOnScrollDownStart: 0
     };
+  },
+  created: function () {
+    var setScrollingUp;
+    // Figure out scroll direction
+    setScrollingUp = (now, old) => {
+      return this.scrollingUp = now !== 0 && now < old;
+    };
+    // Set up a throttled watcher, or a regular watcher, depending on throttle prop
+    if (this.throttle) {
+      return this.$watch('scrollY', external_lodash_throttle_default()(setScrollingUp, this.throttle));
+    } else {
+      return this.$watch('scrollY', setScrollingUp);
+    }
   },
   // Add scroll listners
   mounted: function () {
@@ -310,10 +338,6 @@ render._withStripped = true
     }
   },
   watch: {
-    // Figure out scroll direction
-    scrollY: function (now, old) {
-      return this.scrollingUp = now !== 0 && now < old;
-    },
     scrollingUp: function () {
       if (this.scrollingUp && this.scrolledPast) {
         // Don't allow tweening of the header until the first scroll up. This is
@@ -362,8 +386,8 @@ render._withStripped = true
 });
 // CONCATENATED MODULE: ./index.vue?vue&type=script&lang=coffee&
  /* harmony default export */ var indexvue_type_script_lang_coffee_ = (lib_vue_loader_options_indexvue_type_script_lang_coffee_); 
-// EXTERNAL MODULE: ./index.vue?vue&type=style&index=0&id=599cb6f9&prod&lang=stylus&scoped=true&
-var indexvue_type_style_index_0_id_599cb6f9_prod_lang_stylus_scoped_true_ = __webpack_require__(1);
+// EXTERNAL MODULE: ./index.vue?vue&type=style&index=0&id=3796df4e&prod&lang=stylus&scoped=true&
+var indexvue_type_style_index_0_id_3796df4e_prod_lang_stylus_scoped_true_ = __webpack_require__(2);
 
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
 /* globals __VUE_SSR_CONTEXT__ */
@@ -478,7 +502,7 @@ var component = normalizeComponent(
   staticRenderFns,
   false,
   null,
-  "599cb6f9",
+  "3796df4e",
   null
   
 )
